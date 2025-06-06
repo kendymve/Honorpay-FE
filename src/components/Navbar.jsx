@@ -10,9 +10,8 @@ export default function Navbar() {
         </Link>
         <div className="space-x-4 hidden md:flex">
           <Link to="/" className="text-gray-700 hover:text-blue-500">Home</Link>
-          <Link to="/user" className="text-gray-700 hover:text-blue-500">User Dashboard</Link>
-          <Link to="/manager" className="text-gray-700 hover:text-blue-500">Manager</Link>
-          <Link to="/admin" className="text-gray-700 hover:text-blue-500">Admin</Link>
+          <Link to="/contactus" className="text-gray-700 hover:text-blue-500">Contact us</Link>
+          <Link to="/login" className="text-gray-700 hover:text-blue-500">Login</Link>
         </div>
       </div>
     </nav>
