@@ -13,9 +13,9 @@ const [showAddClient, setShowAddClient] = useState(false);
 const isSuperAdmin = true; // 🔐 replace this with real logic later
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 px-6">
         <h1 className="text-3xl font-bold text-blue-800">Admin Dashboard</h1>
-        <div className="flex justify-between items-center">
+        <div className="flex  justify-end">
       
       <button
         onClick={() => setShowAddClient(!showAddClient)}
