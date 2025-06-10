@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const dummyUsers = [
   { id: 1, name: 'Alice M.', role: 'user', status: 'active' },
   { id: 2, name: 'Brian K.', role: 'manager', status: 'active' },
+  { id: 3, name: 'Brian d.', role: 'manager', status: 'active' },
+  { id: 4, name: 'Brian m.', role: 'manager', status: 'active' },
 ];
 
 export default function UserManager() {

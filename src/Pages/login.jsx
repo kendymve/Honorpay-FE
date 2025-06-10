@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this
+import axios from 'axios'; // Add this for API requests
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -6,6 +8,7 @@ export default function Login() {
     password: '',
     remember: false,
   });
+  const navigate = useNavigate(); // Initialize navigation
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -15,11 +18,31 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can replace this with real login logic
-    console.log('Login submitted:', formData);
-    alert('Login attempted!');
+
+    try {
+      const response = await axios.post('http://localhost:3001/api/user/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      const { token, user: { role } } = response.data;
+
+      // Optional: store token in localStorage or cookie
+      localStorage.setItem('token', token);
+      console.log(response.data)
+
+      // Navigate based on role
+      if (role === 'user') {
+        navigate('/user');
+      } else {
+        navigate('/admin');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert('Invalid credentials or server error.');
+    }
   };
 
   return (
