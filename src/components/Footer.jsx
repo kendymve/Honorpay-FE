@@ -2,7 +2,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-blue text-blue-800 py-10 px-6 mt-10">
+    <footer className="text-blue-800 py-10 px-6 mt-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         {/* Contacts */}
         <div>
