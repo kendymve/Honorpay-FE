@@ -1,38 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 export default function Welcome() {
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 ">
-      <div className="flex flex-col md:flex-row items-center bg-white shadow-xl rounded-2xl w-[95%]  md:p-10 gap-10 h-[75%] min-h-[400px]">
-        {/* Left: GIF */}
-        <div className="flex-shrink-0 w-full md:w-3/5">
-          <img
-            src="/assets/pension.gif"
-            alt="Welcome animation"
-            className="w-full h-auto rounded-xl"
-          />
-        </div>
-
-        {/* Right: Text */}
-        <div className="text-center md:text-left md:w-2/5">
-          <h1 className="text-5xl font-bold mb-4 text-blue-800">Welcome to HonorPay</h1>
-          <p className="text-gray-700 text-lg">
+    <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
+      <div
+        className="w-[95%] min-h-[400px] h-[75%] flex items-center justify-end rounded-2xl shadow-xl md:p-10"
+        style={{
+          backgroundImage: "url('/assets/bg1.jpg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        <div className="text-right md:w-2/5 space-y-6 text-white  p-8  bg-black rounded-xl"  style={{ opacity: 0.7 }}>
+          <h1 className="text-4xl font-extrabold leading-tight">Welcome to HonorPay</h1>
+          <p className="text-xl leading-relaxed">
             HonorPay is a secure platform for managing pension payments for individuals,
             company managers, and admin supervisors. We streamline access, tracking, and reporting
             of retirement contributions and disbursements.
           </p>
-           <div className="mt-6">
-    <Link
-      to="/contactus"
-      className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition"
-    >
-      Contact Us
-    </Link>
-  </div>
+          <div>
+            <Link
+              to="/contactus"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
-        
       </div>
     </div>
   );

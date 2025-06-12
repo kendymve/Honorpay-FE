@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiColor } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
@@ -22,7 +23,8 @@ export default function Navbar() {
           {token ? (
             <button
               onClick={handleLogout}
-              className="text-gray-700 hover:text-red-500 focus:outline-none"
+              className=" hover:text-red-500 focus:outline-none"
+              style={{ color: 'red' }}
             >
               Logout
             </button>

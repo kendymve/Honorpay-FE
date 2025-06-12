@@ -2,8 +2,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="text-blue-800 py-10 px-6 mt-10">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+    <footer className="text-blue-800  pt-8 py-10 px-6 mt-10">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8" style={{ marginTop: '2.5rem' }}>
         {/* Contacts */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
