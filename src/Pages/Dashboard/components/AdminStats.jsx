@@ -1,11 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 export default function AdminStats() {
-  const stats = {
-    users: 1245,
-    payments: 93400,
-    managers: 12,
-  };
+  const [stats, setStats] = useState({
+    users: 0,
+    payments: 0,
+    managers: 0,
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error('Invalid token', err);
+      return;
+    }
+
+    // Set axios default header for this file
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    const fetchStats = async () => {
+      try {
+        // Fetch all users
+        const userRes = await axios.get('http://localhost:3001/api/user/');
+       
+        const users = userRes.data;
+        const totalUsers = Array.isArray(users) ? users.length : 0;
+        const totalManagers = Array.isArray(users)
+          ? users.filter(u => u.role === 'manager' || u.role === 'admin').length
+          : 0;
+
+        // Fetch all transactions
+        const txRes = await axios.get('http://localhost:3001/api/transactions/');
+        const transactions = txRes.data;
+         console.log(txRes.data)
+        const totalPayments = Array.isArray(transactions)
+          ? transactions.reduce((sum, tx) => (tx.status === 'success' || 'completed' ? sum + (tx.amount || 0) : sum), 0)
+          : 0;
+
+        setStats({
+          users: totalUsers,
+          payments: totalPayments,
+          managers: totalManagers,
+        });
+      } catch (error) {
+        console.error('Error fetching stats', error);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
