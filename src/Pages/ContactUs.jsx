@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ export default function ContactUs() {
     message: '',
   });
 
+  const [submitting, setSubmitting] = useState(false);
+
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
@@ -15,13 +18,21 @@ export default function ContactUs() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // For now just log form data
-    console.log('Form submitted:', formData);
-    alert('Thank you for contacting us!');
-    // Clear form
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setSubmitting(true);
+
+    try {
+      const res = await axios.post('http://localhost:3001/api/contactus', formData);
+      alert('Message sent successfully!');
+      console.log('Server response:', res.data);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      console.error('Error sending message:', err.response?.data || err.message);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -85,9 +96,10 @@ export default function ContactUs() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+          disabled={submitting}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-50"
         >
-          Send Message
+          {submitting ? 'Sending...' : 'Send Message'}
         </button>
       </form>
     </div>

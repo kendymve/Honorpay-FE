@@ -51,7 +51,7 @@ export default function AddClientForm() {
       formData.append('nationalID', form.nationalID);
       formData.append('role', form.role);
       if (form.image) {
-        formData.append('profilePicture', form.image);
+        formData.append('image', form.image);
       }
 
       const response = await axios.post(
@@ -63,8 +63,8 @@ export default function AddClientForm() {
           },
         }
       );
-
-      alert(`Client ${response.data.name} registered successfully`);
+      console.log(response.data)
+      alert(`Client ${response.data.user.name} registered successfully`);
       setForm({
         name: '',
         email: '',

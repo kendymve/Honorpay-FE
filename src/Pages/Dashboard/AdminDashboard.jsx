@@ -74,11 +74,11 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <AddAmountForm />
         <SystemActivity />
+         <RecentUsers />
       </div>
 
-      <RecentUsers />
+     
     </div>
   );
 }
